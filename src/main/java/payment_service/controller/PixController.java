@@ -1,16 +1,14 @@
 package payment_service.controller;
 
 import lombok.RequiredArgsConstructor;
-import payment_service.dto.PixDTO;
 import payment_service.entities.Pix;
 import payment_service.service.PixService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 @RestController
 @RequestMapping("/pay")
@@ -19,9 +17,9 @@ public class PixController {
     @Autowired
     private PixService pixService;
 
-    @PostMapping("/pix")
-    public ResponseEntity<Pix> salvarPix(@RequestBody PixDTO pixDTO) throws JsonProcessingException {
-    Pix savedPix = pixService.savePix(pixDTO);
-    return ResponseEntity.ok(savedPix);
+    @GetMapping("/pix")
+    public ResponseEntity<List<Pix>> getAllPix() {
+        List<Pix> pixList = pixService.getAllPix();
+        return ResponseEntity.ok(pixList);
     }
 }

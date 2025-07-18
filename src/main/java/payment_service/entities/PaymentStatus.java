@@ -1,6 +1,5 @@
 package payment_service.entities;
 
-import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,18 +15,14 @@ import payment_service.dto.PixStatus;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "pix") 
-public class Pix {
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long paymentId;   
-   private String originKey;
-   private String destinationKey;
-   private Double value;
-   private LocalDateTime transferDate;
-   private PixStatus status;
+@Table(name = "payment_status") 
+public class PaymentStatus {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long statusId;   
+    private PixStatus status;
 
-   public Pix(PixDTO pixDTO) {
-       this.status = pixDTO.getStatus();
+    public PaymentStatus(PixDTO pixDTO) {
+    this.status = pixDTO.getStatus();
    }
 }
